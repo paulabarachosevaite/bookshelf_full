@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "server-prod": "node server.js",
+    "server-dev": "npx nodemon server.js",
+    "client": "npm start --prefix ../frontend",
+    "dev": "concurrently --kill-others-on-fail \"npm run server-dev\" \"npm run client\""
+  },
+  "author": "Paula Bara",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "concurrently": "^7.6.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
