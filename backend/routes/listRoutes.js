@@ -5,13 +5,13 @@ import {
   getList,
   getAllLists,
   createList,
-  editList,
   deleteList,
+  addBook,
 } from "../controllers/listControllers.js";
 
-router.get("/:listId", getList);
-router.get("/all", getAllLists);
+router.get("/:listId", protect, getList);
+router.get("/", protect, getAllLists);
 router.post("/", protect, createList);
-router.put("/edit/:listId", protect, editList);
-router.delete("/remove/:listId", protect, deleteList);
+router.put("/:listId", protect, addBook);
+router.delete("/:listId", protect, deleteList);
 export default router;

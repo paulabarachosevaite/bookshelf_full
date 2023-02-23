@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(errorHandler);
 app.use("/api/books", bookRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/lists", userRoutes);
+app.use("/api/lists", listRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

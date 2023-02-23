@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {reset, login} from "../features/auth/authSlice";
 import {useState} from "react";
@@ -45,7 +45,7 @@ function Login() {
     dispatch(login(userData));
   };
   return (
-    <div className="flex flex-col h-screen justify-center items-center">
+    <div className="flex flex-col text-slate-600 h-screen justify-center items-center">
       <div className="shadow-xl p-8 rounded-lg bg-gray-100">
         <h1 className="text-center pb-4 pt-2 text-lg font-semibold uppercase">
           Enter your details below
@@ -99,6 +99,12 @@ function Login() {
             Submit
           </button>
         </form>
+        <div className="flex items-center justify-center mt-2">
+          <p className="m-1">Don't have account?</p>
+          <Link to="/register" className="underline underline-offset-4">
+            Sign Up
+          </Link>
+        </div>
       </div>
     </div>
   );

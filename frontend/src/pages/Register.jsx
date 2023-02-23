@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {reset, register} from "../features/auth/authSlice";
 import {useState} from "react";
@@ -53,7 +53,7 @@ function Register() {
   };
 
   return (
-    <div className="flex flex-wrap h-screen justify-evenly items-center text-slate-700">
+    <div className="flex flex-wrap text-slate-600  h-screen justify-evenly items-center text-slate-700">
       <div className="shadow-xl p-8 rounded-lg bg-gray-100">
         <h1 className="text-center pb-4 pt-2 text-lg font-semibold uppercase">
           Enter your details below
@@ -145,6 +145,12 @@ function Register() {
             Submit
           </button>
         </form>
+        <div className="flex items-center justify-center mt-2">
+          <p className="m-1">Already have an account?</p>
+          <Link to="/login" className="underline underline-offset-4">
+            Sign In
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -8,19 +8,16 @@ export const getList = asyncHandler(async (req, res) => {
 });
 
 export const getAllLists = asyncHandler(async (req, res) => {
-  const lists = await List.find({user: req.user.id}).populate({
-    path: "user",
-    select: "name",
-  });
+  const lists = await List.find({user: req.user.id}).populate("books");
   res.status(200).json(lists);
 });
 
 export const createList = asyncHandler(async (req, res) => {
-  const lists = await List.find({user: req.user.id}).populate({
-    path: "user",
-    select: "name",
+  const list = await List.create({
+    user: req.user.id,
+    name: req.body.name,
   });
-  res.status(200).json(lists);
+  res.status(200).json(list);
 });
 
 export const deleteList = asyncHandler(async (req, res) => {
@@ -29,7 +26,8 @@ export const deleteList = asyncHandler(async (req, res) => {
   res.status(200).json("List deleted");
 });
 
-export const editList = asyncHandler(async (req, res) => {
+export const addBook = asyncHandler(async (req, res) => {
+  console.log(req.body.bookId);
   const list = await List.findById(req.params.listId);
   if (!list) {
     res.status(400);
@@ -43,6 +41,20 @@ export const editList = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("User not authorized");
   }
-  const updatedList = await global.findByIdAndUpdate(req.params, req.body);
-  res.status(200).json(updatedList);
+
+  const book = await Book.findById(req.body.bookId);
+  if (!book) {
+    res.status(400);
+    throw new Error("Book not found");
+  }
+
+  if (list.books.includes(book._id)) {
+    res.status(400);
+    throw new Error("Book already exists in list");
+  }
+
+  list.books.push(book._id);
+  await list.save();
+
+  res.status(200).json(list);
 });

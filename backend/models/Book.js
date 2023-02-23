@@ -18,12 +18,14 @@ const BookSchema = mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, "Please add the description"],
     },
     image: {
       type: String,
     },
     genre: {
+      type: String,
+    },
+    bookId: {
       type: String,
     },
   },
